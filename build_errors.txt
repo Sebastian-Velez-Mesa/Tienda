@@ -1,0 +1,14 @@
+﻿  Determinando los proyectos que se van a restaurar...
+  Todos los proyectos est├ín actualizados para la restauraci├│n.
+c:\Users\User\Desktop\C#\examen_\examen_\examen_.csproj(285,3): error MSB4019: No se encontr├│ el proyecto "C:\Program Files\dotnet\sdk\10.0.102\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets" importado. Confirme que la expresi├│n de la declaraci├│n Import "$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets", que se evalu├│ como "C:\Program Files\dotnet\sdk\10.0.102\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets", es correcta y que el archivo existe en el disco.
+  examen_.Entidades -> c:\Users\User\Desktop\C#\examen_\examen_.Entidades\bin\Debug\net48\examen_.Entidades.dll
+  examen_.DAL -> c:\Users\User\Desktop\C#\examen_\examen_.DAL\bin\Debug\net48\examen_.DAL.dll
+  examen_.BLL -> c:\Users\User\Desktop\C#\examen_\examen_.BLL\bin\Debug\net48\examen_.BLL.dll
+
+ERROR al compilar.
+
+c:\Users\User\Desktop\C#\examen_\examen_\examen_.csproj(285,3): error MSB4019: No se encontr├│ el proyecto "C:\Program Files\dotnet\sdk\10.0.102\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets" importado. Confirme que la expresi├│n de la declaraci├│n Import "$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets", que se evalu├│ como "C:\Program Files\dotnet\sdk\10.0.102\Microsoft\VisualStudio\v18.0\WebApplications\Microsoft.WebApplication.targets", es correcta y que el archivo existe en el disco.
+    0 Advertencia(s)
+    1 Errores
+
+Tiempo transcurrido 00:00:03.68

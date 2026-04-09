@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="examen_/examen_.csproj" Id="a77bdcc9-568c-4fee-bdc0-61ef1e22c984" />
+  <Project Path="CEntidad/CEntidad.csproj" />
+  <Project Path="CDatos/CDatos.csproj" />
+  <Project Path="CNegocios/CNegocios.csproj" />
+</Solution>

@@ -1,0 +1,270 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: #e0e0e0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Glassmorphism Navbar */
+.navbar-custom {
+    background: rgba(30, 30, 47, 0.75) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #00d2ff !important;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    margin: 0 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(0, 210, 255, 0.2);
+    color: #00d2ff !important;
+    transform: translateY(-2px);
+}
+
+/* Premium Cards for Layout */
+.glass-card {
+    background: rgba(42, 42, 64, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #00d2ff;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 10px rgba(0, 210, 255, 0.4);
+}
+
+/* Form Controls */
+.form-control,
+.form-select,
+select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus,
+select:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #00d2ff !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.5) !important;
+    color: #ffffff !important;
+    outline: none;
+}
+
+select option {
+    background-color: #2a2a40;
+    color: #fff;
+}
+
+label {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #b0b0b0;
+    letter-spacing: 0.5px;
+}
+
+/* Buttons */
+.btn-primary-custom {
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+    color: white;
+}
+
+.btn-success-custom {
+    background: linear-gradient(45deg, #11998e, #38ef7d);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+}
+
+.btn-success-custom:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(56, 239, 125, 0.6);
+    color: white;
+}
+
+/* Data Tables */
+.table-custom {
+    color: #e0e0e0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-custom th {
+    background: rgba(0, 210, 255, 0.15);
+    color: #00d2ff;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+}
+
+.table-custom td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table-custom tr {
+    transition: background 0.3s ease;
+}
+
+.table-custom tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle animations for page load */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 0;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #00d2ff, #38ef7d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #b0b0b0;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Home Navigation Cards */
+.nav-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.nav-card {
+    background: rgba(42, 42, 64, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    background: rgba(42, 42, 64, 0.7);
+    border-color: rgba(0, 210, 255, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.nav-card i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.nav-card h3 {
+    color: #00d2ff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.nav-card p {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.icon-blue {
+    color: #00d2ff;
+}
+
+.icon-green {
+    color: #38ef7d;
+}
+
+.icon-purple {
+    color: #a78bfa;
+}
+
+/* Grid layout refinements */
+.row-gap {
+    row-gap: 2rem;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

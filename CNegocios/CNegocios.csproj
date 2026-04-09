@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CDatos\CDatos.csproj" />
+    <ProjectReference Include="..\CEntidad\CEntidad.csproj" />
+  </ItemGroup>
+</Project>
