@@ -1,31 +1,43 @@
 <%@ Page Title="Iniciar Sesion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Login.aspx.cs" Inherits="examen_.Login" %>
     <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="row mt-5 fade-in-up">
-            <div class="col-md-6 mx-auto">
-                <div class="glass-card" style="padding: 2.5rem;">
-                    <h2 class="text-center mb-4" style="color: #00d2ff; font-weight: 600;">Iniciar Sesion</h2>
+        <div class="row h-100 align-items-center justify-content-center" style="min-height: 70vh;">
+            <div class="col-md-6 col-lg-5">
+                <div class="glass-card animate-fade-in" style="padding: 3rem; border-top: 4px solid var(--accent);">
+                    <div class="text-center mb-5">
+                        <i class="fas fa-user-lock"
+                            style="font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                        <h2 style="color: white; font-weight: 700;">ACCESO AL SISTEMA</h2>
+                        <p class="text-secondary">Ingrese sus credenciales de seguridad</p>
+                    </div>
+
                     <div class="form-group mb-4">
-                        <label style="color:#e0e0e0; margin-bottom:0.5rem; display:block;">Usuario</label>
+                        <label class="text-secondary small mb-2"><i class="fas fa-at me-2"></i>USUARIO</label>
                         <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control"
-                            placeholder="Ingrese su usuario"></asp:TextBox>
+                            placeholder="Nombre de usuario"></asp:TextBox>
                     </div>
-                    <div class="form-group mb-4">
-                        <label style="color:#e0e0e0; margin-bottom:0.5rem; display:block;">Contrasena</label>
+
+                    <div class="form-group mb-5">
+                        <label class="text-secondary small mb-2"><i class="fas fa-key me-2"></i>CONTRASEÑA</label>
                         <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"
-                            placeholder="Ingrese su contrasena"></asp:TextBox>
+                            placeholder="••••••••"></asp:TextBox>
                     </div>
-                    <div class="mt-4">
-                        <asp:Button ID="btnLogin" runat="server" Text="Ingresar al Sistema"
-                            CssClass="btn-primary-custom w-100 py-3" OnClick="btnLogin_Click" Font-Bold="True"
-                            Font-Size="Large" />
-                    </div>
-                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-warning mt-3 d-block text-center">
+
+                    <asp:Button ID="btnLogin" runat="server" Text="INICIAR SESIÓN" CssClass="btn-premium w-100 py-3"
+                        OnClick="btnLogin_Click" />
+
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="text-warning mt-4 d-block text-center small">
                     </asp:Label>
+
+                    <div class="mt-5 pt-4 text-center" style="border-top: 1px solid var(--glass-border);">
+                        <small class="text-muted">Desarrollado con Arquitectura N-Tier Premium</small>
+                    </div>
                 </div>
 
-                <div class="text-center mt-3 text-muted">
-                    <small>Para probar, usa: admin/admin123 o cliente/cliente123</small>
+                <div class="text-center mt-4">
+                    <span class="badge bg-dark text-secondary p-2" style="border: 1px solid var(--glass-border);">
+                        <i class="fas fa-info-circle me-1"></i> Admin: admin/admin123 | Cliente: cliente/cliente123
+                    </span>
                 </div>
             </div>
         </div>
