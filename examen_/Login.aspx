@@ -1,13 +1,13 @@
 <%@ Page Title="Iniciar Sesion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Login.aspx.cs" Inherits="examen_.Login" %>
     <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="row h-100 align-items-center justify-content-center" style="min-height: 70vh;">
-            <div class="col-md-6 col-lg-5">
-                <div class="glass-card animate-fade-in" style="padding: 3rem; border-top: 4px solid var(--accent);">
+        <div class="centered-container">
+            <div class="login-box">
+                <div class="glass-card animate-fade-in" style="border-top: 4px solid var(--accent);">
                     <div class="text-center mb-5">
                         <i class="fas fa-user-lock"
                             style="font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                        <h2 style="color: white; font-weight: 700;">ACCESO AL SISTEMA</h2>
+                        <h2 style="color: white; font-weight: 700; letter-spacing: 1px;">ACCESO AL SISTEMA</h2>
                         <p class="text-secondary">Ingrese sus credenciales de seguridad</p>
                     </div>
 
