@@ -13,6 +13,7 @@ namespace CDatos
             int idVentaGenerado = 0;
             using (SqlConnection con = CDConexion.ObtenerConexion())
             {
+                // Apertura de la conexion fisica con el servidor SQL antes de iniciar transacciones
                 con.Open();
                 // Inicio de una transaccion SQL para asegurar la atomicidad de la venta y el ajuste de stock
                 using (SqlTransaction tr = con.BeginTransaction())
@@ -52,14 +53,17 @@ namespace CDatos
                             cmdStock.ExecuteNonQuery();
                         }
                         
-                        // Si todas las operaciones fueron exitosas, se confirman los cambios en la base de datos
+                        // Si todas las operaciones fueron exitosas, se confirman los cambios de manera irrevocable
                         tr.Commit();
                     }
                     catch (Exception)
                     {
-                        // En caso de error, se deshacen todos los cambios (rollback) para mantener la integridad
+                        // Bloque de Seguridad: Si CUALQUIER comando falla, revertimos TODO el proceso
+                        // Esto evita que queden ventas sin detalle o stock descontado incorrectamente
                         tr.Rollback();
+                        // Reseteamos el ID para informar a las capas superiores que la operacion fallo
                         idVentaGenerado = 0;
+                        // Re-lanzamos la excepcion para permitir su registro en el log de la aplicacion
                         throw;
                     }
                 }
@@ -69,17 +73,22 @@ namespace CDatos
 
         public DataTable Listar()
         {
+            // DataTable servira como contenedor en memoria para los resultados de la consulta JOIN
             DataTable dt = new DataTable();
             using (SqlConnection con = CDConexion.ObtenerConexion())
             {
+                // Query complejo que une ventas con clientes para mostrar nombres en lugar de IDs
                 string query = "SELECT v.id_venta, c.nombre as cliente, v.fecha, v.total " +
                                "FROM venta v INNER JOIN cliente c ON v.id_cliente = c.id_cliente " +
                                "ORDER BY v.id_venta DESC";
                 SqlCommand cmd = new SqlCommand(query, con);
+                // Apertura de conexion requerida por el DataAdapter
                 con.Open();
+                // SqlDataAdapter gestiona el flujo de datos y el llenado del DataTable automaticamente
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
+            // Retornamos el set de datos listo para ser vinculado a un GridView
             return dt;
         }
     }

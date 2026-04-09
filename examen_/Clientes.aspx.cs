@@ -58,18 +58,25 @@ namespace examen_
 
             if (res > 0)
             {
+                // Notificacion visual de exito en pantalla
                 lblMensaje.Text = "Operacion realizada con exito!";
                 lblMensaje.CssClass = "text-success d-block mt-3";
+                // Generacion de script dinamico para disparar el popup de SweetAlert2
                 string script = "Swal.fire({ title: 'Exito', text: 'Operacion realizada con exito', icon: 'success', confirmButtonColor: '#00d2ff' });";
+                // Registro del script para que se ejecute en el navegador al renderizar la pagina
                 ScriptManager.RegisterStartupScript(this, GetType(), "SwalSuccess", script, true);
+                
+                // Reseteo manual de todos los controles de entrada para nuevos registros
                 txtNombre.Text = "";
                 txtTelefono.Text = "";
                 txtEmail.Text = "";
                 txtDireccion.Text = "";
+                // Recarga de la tabla para mostrar el cliente recien creado o editado
                 CargarClientes();
             }
             else
             {
+                // Feedback en caso de que las reglas de negocio en el BLL rechacen el registro
                 lblMensaje.Text = "Error al procesar el cliente.";
                 lblMensaje.CssClass = "text-danger d-block mt-3";
             }

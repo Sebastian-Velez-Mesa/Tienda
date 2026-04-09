@@ -11,12 +11,14 @@ namespace CNegocios
         // Metodo de negocio para validar el ingreso, actua como intermediario entre la UI y el DAL
         public CEUsuarios Login(string username, string password)
         {
-            // Logica de validacion basica antes de intentar la comunicacion con la base de datos
+            // Logica de validacion basica: si alguno es nulo o vacio, no se procede
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
+                // Retornamos null para indicar que el intento de ingreso es invalido
                 return null;
             }
             // Delegacion de la responsabilidad de busqueda a la Capa de Datos correspondientes
+            // Se realiza la llamada al metodo Login del objeto DAL instanciado arriba
             return dal.Login(username, password);
         }
     }

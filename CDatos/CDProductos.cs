@@ -20,14 +20,18 @@ namespace CDatos
                 con.Open();
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
+                    // Recorremos el lector de datos mientras existan registros pendientes
                     while (dr.Read())
                     {
+                        // Creamos una nueva instancia de producto para cada fila encontrada
                         lista.Add(new CEProductos
                         {
+                            // Mapeo detallado de cada columna de la tabla al objeto C#
                             Id_Producto = Convert.ToInt32(dr["id_producto"]),
                             Nombre = dr["nombre"].ToString(),
                             Precio = Convert.ToDecimal(dr["precio"]),
                             Stock = Convert.ToInt32(dr["stock"]),
+                            // El operador ?. asegura que si la categoria es null en DB, no explote el codigo
                             Categoria = dr["categoria"]?.ToString()
                         });
                     }
@@ -68,22 +72,31 @@ namespace CDatos
         // Metodo para actualizar datos de un producto existente usando su ID unico
         public int Actualizar(CEProductos producto)
         {
+            // Inicializamos el resultado en 0 (ninguna fila afectada)
             int resultado = 0;
+            // Bloque using para gestion eficiente de la conexion con el servidor SQL
             using (SqlConnection con = CDConexion.ObtenerConexion())
             {
+                // Definicion de la sentencia UPDATE con clausula WHERE por identificador unico
                 SqlCommand cmd = new SqlCommand("UPDATE producto SET nombre = @nombre, precio = @precio, stock = @stock, categoria = @categoria WHERE id_producto = @id_producto", con);
+                // Vinculamos el ID del producto que deseamos modificar
                 cmd.Parameters.AddWithValue("@id_producto", producto.Id_Producto);
+                // Actualizamos el nombre del producto
                 cmd.Parameters.AddWithValue("@nombre", producto.Nombre);
                 
+                // Configuracion tecnica del decimal para evitar perdida de centavos en la transaccion
                 SqlParameter pPrecio = new SqlParameter("@precio", SqlDbType.Decimal);
                 pPrecio.Precision = 10;
                 pPrecio.Scale = 2;
                 pPrecio.Value = producto.Precio;
                 cmd.Parameters.Add(pPrecio);
 
+                // Actualizacion de los niveles de inventario (Stock)
                 cmd.Parameters.AddWithValue("@stock", producto.Stock);
+                // Gestionamos la categoria permitiendo valores nulos (DBNull) si aplica
                 cmd.Parameters.AddWithValue("@categoria", (object)producto.Categoria ?? DBNull.Value);
                 
+                // Apertura y ejecucion definitiva del comando de modificacion
                 con.Open();
                 resultado = cmd.ExecuteNonQuery();
             }
@@ -92,16 +105,20 @@ namespace CDatos
 
         public int Eliminar(int idProducto)
         {
-            // Ejecucion de borrado fisico en la base de datos
+            // Ejecucion de borrado fisico en la base de datos para el ID proporcionado
             int resultado = 0;
             using (SqlConnection con = CDConexion.ObtenerConexion())
             {
+                // Sentencia DELETE: accion destructiva filtrada por Primary Key
                 SqlCommand cmd = new SqlCommand("DELETE FROM producto WHERE id_producto = @id_producto", con);
+                // Pasamos el ID del registro que sera removido permanentemente
                 cmd.Parameters.AddWithValue("@id_producto", idProducto);
                 
+                // Procedemos con la apertura y ejecucion del comando SQL
                 con.Open();
                 resultado = cmd.ExecuteNonQuery();
             }
+            // Retorna 1 si se elimino correctamente, 0 si no se encontro el ID
             return resultado;
         }
     }

@@ -15,13 +15,16 @@ namespace examen_
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Seguridad: Si no hay sesion de usuario, redirigimos a la pantalla de login
             if (Session["Rol"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
+            // Solo cargamos los datos maestros si es la carga inicial de la pagina
             if (!IsPostBack)
             {
                 CargarCombos();
+                // Inicializamos el carrito vacio en la sesion del usuario
                 Session["Carrito"] = new List<CECarritoItems>();
             }
         }
@@ -98,15 +101,15 @@ namespace examen_
                 return;
             }
 
-            // Creamos la cabecera de la venta con los datos del cliente seleccionado
+            // Creamos la cabecera de la venta con los datos del cliente seleccionado en el DDL
             CEVentas v = new CEVentas
             {
                 Id_Cliente = Convert.ToInt32(ddlClientes.SelectedValue),
-                // Se asigna la estampa de tiempo del servidor
+                // Se asigna la estampa de tiempo local del servidor
                 Fecha = DateTime.Now
             };
 
-            // Mapeamos los items del carrito a la lista de detalles de la entidad de venta
+            // Mapeamos los items del carrito a la lista de detalles de la entidad de venta (POCO)
             foreach (var item in carrito)
             {
                 v.Detalles.Add(new CEDetalleVentas
@@ -117,22 +120,26 @@ namespace examen_
                 });
             }
 
-            // Llamada transaccional a la capa de negocios
+            // Llamada transaccional a la capa de negocios (BLL)
+            // El resultado mayor a 0 indica insercion exitosa del ID de venta
             int idx = ventaBLL.RegistrarVenta(v);
             if (idx > 0)
             {
-                // Mensaje en pantalla y disparo de popup estetico SweetAlert
+                // Mensaje en pantalla y disparo de popup estetico mediante SweetAlert2
                 lblMensaje.Text = "CEVentas registrada con exito!";
                 lblMensaje.CssClass = "text-success d-block text-end";
                 string script = "Swal.fire({ title: 'Exito', text: 'Venta registrada correctamente', icon: 'success', confirmButtonColor: '#00d2ff' });";
+                // Registro del bloque script para ejecucion post-render
                 ScriptManager.RegisterStartupScript(this, GetType(), "SwalSuccess", script, true);
                 
-                // Reseteamos el carrito tras la venta exitosa
+                // Reseteamos el carrito tras la venta exitosa para permitir una nueva operacion
                 Session["Carrito"] = new List<CECarritoItems>();
+                // Refrescamos el listado visual del carrito (ahora vacio)
                 ActualizarCarrito();
             }
             else
             {
+                // Feedback de error en caso de fallo en la transaccion (ej: falta de stock repentina)
                 lblMensaje.Text = "Error al registrar la venta.";
                 lblMensaje.CssClass = "text-danger d-block text-end";
             }
